@@ -1,11 +1,22 @@
 ﻿<div ng-cloak>
-   <div class="report-date">{{dataShare.gTitle()}}</div>
+   <div class="rating_h1">{{dataShare.data.title}}</div>
+   <div dir="rtl" class="rating_h2">תן דירוג לדוכן הקבוצתי:</div>
    <div class="rating_stars">
-      <span ng-click="id=1"><image ng-class="{'rating_star': (id<1), 'rating_star fill': (id>=1)}" src="assets/star.png" /></span>
-      <span ng-click="id=2"><image ng-class="{'rating_star': (id<2), 'rating_star fill': (id>=2)}" src="assets/star.png" /></span>
-      <span ng-click="id=3"><image ng-class="{'rating_star': (id<3), 'rating_star fill': (id>=3)}" src="assets/star.png" /></span>
-      <span ng-click="id=4"><image ng-class="{'rating_star': (id<4), 'rating_star fill': (id>=4)}" src="assets/star.png" /></span>
-      <span ng-click="id=5"><image ng-class="{'rating_star': (id<5), 'rating_star fill': (id>=5)}" src="assets/star.png" /></span>
+      <span ng-click="r1=1"><image ng-class="{'rating_star': (r1<1), 'rating_star fill': (r1>=1)}" src="assets/star.png" /></span>
+      <span ng-click="r1=2"><image ng-class="{'rating_star': (r1<2), 'rating_star fill': (r1>=2)}" src="assets/star.png" /></span>
+      <span ng-click="r1=3"><image ng-class="{'rating_star': (r1<3), 'rating_star fill': (r1>=3)}" src="assets/star.png" /></span>
+      <span ng-click="r1=4"><image ng-class="{'rating_star': (r1<4), 'rating_star fill': (r1>=4)}" src="assets/star.png" /></span>
+      <span ng-click="r1=5"><image ng-class="{'rating_star': (r1<5), 'rating_star fill': (r1>=5)}" src="assets/star.png" /></span>
    </div>
-   <div><image width="200" src="assets/rating_legend.png"></image></div>
+   <div dir="rtl" class="rating_h2">תן דירוג לתחפושת הקבוצתית:</div>
+   <div class="rating_stars">
+      <span ng-click="r2=1"><image ng-class="{'rating_star': (r2<1), 'rating_star fill': (r2>=1)}" src="assets/star.png" /></span>
+      <span ng-click="r2=2"><image ng-class="{'rating_star': (r2<2), 'rating_star fill': (r2>=2)}" src="assets/star.png" /></span>
+      <span ng-click="r2=3"><image ng-class="{'rating_star': (r2<3), 'rating_star fill': (r2>=3)}" src="assets/star.png" /></span>
+      <span ng-click="r2=4"><image ng-class="{'rating_star': (r2<4), 'rating_star fill': (r2>=4)}" src="assets/star.png" /></span>
+      <span ng-click="r2=5"><image ng-class="{'rating_star': (r2<5), 'rating_star fill': (r2>=5)}" src="assets/star.png" /></span>
+   </div>
+   <md-button class="md-raised md-warn send">שלח</md-button>
+
 </div>
+

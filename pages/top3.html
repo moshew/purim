@@ -1,10 +1,20 @@
-﻿<div class="report-date" style="margin-bottom:40px;">{{loginData.date_str}}</div>
-<div class="status">
-    <div class="status-delete">
-        <div ng-click="report(-1)"><img ng-if="loginData.lock==0" src="assets/status_delete.png" /></div>
-        <img ng-if="loginData.lock!=0" src="assets/status_none.png" />
+﻿<div ng-cloak>
+    <div style="height: 130px;">
+        <div class="top3-title" dir="rtl">הכנס מספר קבוצה:</div>
+        <div class="top3-next" ng-click="next()"><image ng-src="assets/Next-icon{{image_state}}.png" /></div>
+        <span class="top3-gNum">{{value}}</span>
+        <div class="top3-delete" ng-click="press('d')"><image  src="assets/delete.png" /></div>
     </div>
-    <div><img id="status_icon" src="assets/report/{{status}}.png" /></div>
-    <div style="font-size:18px;">{{status_label}}</div>
+    <div>
+        <span class="top3-btn" ng-click="press(1)">1</span><span class="top3-btn" ng-click="press(2)">2</span><span class="top3-btn" ng-click="press(3)">3</span><span class="top3-btn" ng-click="press(4)">4</span><span class="top3-btn" ng-click="press(5)">5</span><br>
+        <span class="top3-btn" ng-click="press(6)">6</span><span class="top3-btn" ng-click="press(7)">7</span><span class="top3-btn" ng-click="press(8)">8</span><span class="top3-btn" ng-click="press(9)">9</span><span class="top3-btn" ng-click="press(0)">0</span>
+    </div>
+    <div>
+        <div class="top3_results" dir="rtl">תוצאות ביניים:</div>
+        <div style="display: inline-block;"><div class="top3_1title">מדור 72</div><div dir="rtl" class="top3_1score" >2500 נקודות</div></div>
+        <image class="top3_crown" src="assets/crown.png" />
+        <div style="margin: 20px;" />
+        <div dir="rtl" class="top3_scores">מקום שני: מדור 32 - 388 נקודות</div>
+        <div class="top3_scores">מקום שלישי: מדור 35 - 674 נקודות</div>
+    </div>
 </div>
-<div ng-include="'pages/footer1.html'"></div>
