@@ -54,7 +54,7 @@ span{
     /*zoom: 100%;*/
     top:0;
     bottom:0;
-    padding-top:50px;
+    padding-top:20px;
     position:absolute; 
     text-align:center;
     width:100%;
@@ -92,7 +92,7 @@ span{
 }
 
 .home-logo {
-    margin-top:10px;
+    margin-top:40px;
     margin-bottom:25px;
 }
 
@@ -161,7 +161,7 @@ to {transform: rotate(359deg);}
 }
 
 .login-header {
-    /*margin-top:10px;*/
+    margin-top:30px;
     height: 85px;
 }
 
@@ -197,7 +197,7 @@ to {transform: rotate(359deg);}
 
 .popupScreen {
     bottom:0;
-    padding-top:45%;
+    padding-top:40%;
     position:absolute;
     text-align:center;
     top:0;
@@ -223,7 +223,7 @@ to {transform: rotate(359deg);}
     font-size: 250%;
 }
 .rating_h2 {
-    margin-right: 27px;
+    width: 85%;
     text-align: right;
     margin-top: 30px;
     margin-bottom: 10px;
@@ -240,9 +240,10 @@ to {transform: rotate(359deg);}
 }
 
 .md-raised.md-warn.send {
-    margin-top: 50px;
-    font-size: 125%;
-    width: 75%;
+    margin-top: 60px;
+    font-size: 150%;
+    width: 72%;
+    height: 40px;
 }
 
 .top3-title {
@@ -253,7 +254,7 @@ to {transform: rotate(359deg);}
 
 .top3-delete {
     position: absolute;
-    top:82px;
+    top:52px;
     right: 58px;
     width: 40px;
 }
@@ -261,10 +262,10 @@ to {transform: rotate(359deg);}
 .top3-gNum {
     font-size: 350%;
     border-radius: 5px;
-    padding-top:3px;
+    padding-top:0px;
     margin-bottom: 25px;
     width: 60%;
-    height: 75px;
+    height: 70px;
     border-width: 1px;
     border-style: solid;
     border-color: black;
@@ -275,7 +276,7 @@ to {transform: rotate(359deg);}
 
 .top3-next {
     position:absolute;
-    top:115px;
+    top:85px;
     left:36px;
     width: 50px;
 
@@ -295,10 +296,12 @@ to {transform: rotate(359deg);}
 }
 
 .top3_results {
-    margin-top: 60px;
-    margin-bottom: 30px;
-    font-size: 250%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 150%;
     background: #4b688e;
+    width:94%;
+    display: inline-block;
 }
 
 .top3_crown {
@@ -309,6 +312,7 @@ to {transform: rotate(359deg);}
 
 .top3_1title {
     font-size: 200%;
+    height: 40px;
 }
 
 .top3_1score {
@@ -317,8 +321,48 @@ to {transform: rotate(359deg);}
 
 .top3_scores {
     font-size: 125%;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
+
+.md-raised.md-warn.results {
+    margin-top: 10px;
+    font-size: 120%;
+    width: 100px;
+}
+
+.results_title {
+    margin-top: 0px;
+    margin-bottom: 15px;
+    font-size: 200%;
+    '''background: #4b688e;
+}
+
+.results_item {
+    font-size: 150%;
+    margin: 5px;
+    background: #4b688e;
+    width:75%;
+    display: inline-block;
+}
+
+.results_item1 {
+    float: right;
+    text-align: right;
+    margin-right: 40px;
+    width:40%;
+
+}
+
+.results_item2 {
+    /*float: right;
+    text-align: left;
+    margin-left: 20px;*/
+}
+
+.md-raised.md-warn.back {
+    margin-top: 25px;
+}
+
 .report-back {
     position:absolute;
     top:-70px;

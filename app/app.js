@@ -5,7 +5,7 @@
 var app = angular.module('app', ['ngRoute', 'ngAnimate', 'ngMaterial', 'ngMdIcons', 'angucomplete-alt']);
 //var domain = 'http://areport-myfirsttestapp.rhcloud.com/';
 //var domain = 'http://isra-net.co.il/~moridimt/';
-var domain = 'http://a-report.co.il/';
+var domain = 'http://purim-sagol.com/';
 
 // configure our routes
 app.config(function ($routeProvider) {
@@ -23,6 +23,11 @@ app.config(function ($routeProvider) {
 
         .when('/top3', {
             templateUrl: 'pages/top3.html',
+            controller: 'top3Controller'
+        })
+
+        .when('/results', {
+            templateUrl: 'pages/results.html',
             controller: 'top3Controller'
         })
 
@@ -46,23 +51,45 @@ app.factory('dataShare', function ($http, $location, $timeout) {
     var pagePromise = null;
     service.data = false;
     service.id = -1;
+    service.groups = [];
+    service.results = [1,2];
+    service.loop = false;
 
-    service.set = function (data) {
-        this.data = data;
-    };
     service.get = function () {
         return this.data;
     };
 
     service.changePage = function (data, path) {
-        this.set(data);
-        if (data.hasOwnProperty('id')) this.id = data.id;
+        this.data = data;
+        if (data.hasOwnProperty('id')) {
+            this.id = data.id;
+            this.groups = data.groups;
+            if (data.id != -1) {
+                this.loop = true;
+                this.loopResults();
+            }
+        }
         $location.path(path);
         $timeout.cancel(pagePromise);
         pagePromise = $timeout(function () {
             $location.path('');
+            service.loop = false;
         }, 5 * 60 * 1000);
-    };
+    }
+
+    service.loadResults = function () {
+        $http.jsonp(domain + 'results.php?callback=JSON_CALLBACK')
+            .success(function (data2) {
+                service.results = data2;
+            });
+    }
+
+    service.loopResults = function () {
+        $timeout(function () {
+            service.loadResults();
+            if (service.loop) service.loopResults();
+        }, 30 * 1000);
+    }
     return service;
 });
 
@@ -77,7 +104,8 @@ app.controller('mainController', function ($scope, $http, $location, dataShare) 
         $http.jsonp(domain+'login.php?callback=JSON_CALLBACK')
             .success(function (data) {
                 $scope.loading = false;
-                dataShare.changePage(data, 'login');
+                path = (data.id==-1)?'login':'top3';
+                dataShare.changePage(data, path);
             });
     };
 });
@@ -119,10 +147,9 @@ app.controller('loginController', function ($scope, $http, $location, $mdDialog,
         } else if ($scope.loginSate == 'phone' && $scope.index == 10) {
             $scope.sendCodeScreen = true;
             $scope.loginLoading = true;
-            $http.jsonp(domain+'send_code.php?callback=JSON_CALLBACK&p_id=' + $scope.value)
+            $http.jsonp(domain+'send_code.php?callback=JSON_CALLBACK&phone=' + $scope.value)
             .success(function (data) {
                 $scope.loginLoading = false;
-                $scope.loginCodeResponse = (data.status) ? 'found' : 'not-found';
             });
         }
     };
@@ -141,11 +168,15 @@ app.controller('loginController', function ($scope, $http, $location, $mdDialog,
 });
 
 app.controller('top3Controller', function ($scope, $http, $location, dataShare) {
-    //$scope.zoom_factor = window.innerHeight / 5.59;
-    $scope.zoom_factor = window.innerHeight / 6.67;
+    $scope.zoom_factor = window.innerHeight / 5.59;
+    //$scope.zoom_factor = window.innerHeight / 6.67;
     $scope.dataShare = dataShare;
+    if (dataShare.id==-1) $location.path('');
+    dataShare.loadResults();
+
     $scope.value = '';
     $scope.image_state = '_disabled';
+
 
     $scope.press = function (val) {
         if (val == 'd') {
@@ -156,7 +187,8 @@ app.controller('top3Controller', function ($scope, $http, $location, dataShare) 
         else $scope.value += val;
 
         if ($scope.value.length == 2) {
-            if (dataShare.data.groups.indexOf(parseInt($scope.value)) != -1) {
+            $scope.test1 = dataShare.groups;
+            if (dataShare.groups.indexOf($scope.value) != -1) {
                $scope.image_state = '';
             }
         }
@@ -172,16 +204,26 @@ app.controller('top3Controller', function ($scope, $http, $location, dataShare) 
                 });
         }
     };
+
+    $scope.results = function () {
+        $location.path('results')
+    };
+
+    $scope.back = function () {
+        $location.path('top3')
+    };
 });
 
 app.controller('ratingController', function ($scope, $http, $location, dataShare) {
     $scope.zoom_factor = window.innerHeight / 5.59;
     $scope.dataShare = dataShare;
+    if (dataShare.id==-1) $location.path('');
+
     $scope.r1 = dataShare.data.r1;
     $scope.r2 = dataShare.data.r2;
 
     $scope.rate = function () {
-        $http.jsonp(domain+'rate.php?callback=JSON_CALLBACK&id=' + dataShare.id + '&groupId=' + $scope.value+'&r1='+$scope.r1+'&r2='+$scope.r2)
+        $http.jsonp(domain+'rate.php?callback=JSON_CALLBACK&id=' + dataShare.id + '&groupId=' + dataShare.data.groupId+'&r1='+$scope.r1+'&r2='+$scope.r2)
             .success(function (data) {
                 dataShare.changePage(data, 'top3');
             });

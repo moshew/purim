@@ -1,5 +1,5 @@
 ﻿<div ng-cloak>
-    <div style="height: 130px;">
+    <div style="height: 125px;">
         <div class="top3-title" dir="rtl">הכנס מספר קבוצה:</div>
         <div class="top3-next" ng-click="next()"><image ng-src="assets/Next-icon{{image_state}}.png" /></div>
         <span class="top3-gNum">{{value}}</span>
@@ -11,10 +11,11 @@
     </div>
     <div>
         <div class="top3_results" dir="rtl">תוצאות ביניים:</div>
-        <div style="display: inline-block;"><div class="top3_1title">מדור 72</div><div dir="rtl" class="top3_1score" >2500 נקודות</div></div>
+        <div style="display: inline-block;"><div class="top3_1title">{{dataShare.results[0].title}}</div><div dir="rtl" class="top3_1score">{{dataShare.results[0].score}} נקודות</div></div>
         <image class="top3_crown" src="assets/crown.png" />
-        <div style="margin: 20px;" />
-        <div dir="rtl" class="top3_scores">מקום שני: מדור 32 - 388 נקודות</div>
-        <div class="top3_scores">מקום שלישי: מדור 35 - 674 נקודות</div>
+        <div style="margin: 5px;" />
+        <div dir="rtl" class="top3_scores">מקום שני: <span/>{{dataShare.results[1].title}} - {{dataShare.results[1].score}} <span />נקודות</div>
+        <div dir="rtl" class="top3_scores">מקום שלישי: <span/>{{dataShare.results[2].title}} - {{dataShare.results[2].score}} <span />נקודות</div>
+        <md-button class="md-raised md-warn results" ng-click="results()">כל התוצאות</md-button>
     </div>
 </div>
